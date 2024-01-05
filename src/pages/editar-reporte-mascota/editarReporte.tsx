@@ -21,7 +21,6 @@ function EditarReporte(){
     navigate("/mascotas-reportadas")
   }
 
-
   async function mascotaEncontrada(){
     await serviceToBackend.notificarMascotaEncontrada(id)
     alert("Recibimos tu notificacion! Gracias por ayudarnos!")
