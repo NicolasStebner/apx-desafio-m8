@@ -5,12 +5,12 @@ import {
 
 export const emailUser = atom({
   key: "emailOfUser",
-  default: ""
+  default: localStorage.getItem("emailUser")
 })
 
 export const idUser = atom({
   key: "idUser",
-  default: -1
+  default: localStorage.getItem("idUser")
 })
 
 

@@ -20,6 +20,7 @@
     "@types/react": "^18.2.20",
     "cross-env": "^7.0.3",
     "css-loader": "^6.8.1",
+    "dropzone": "^6.0.0-beta.2",
     "file-loader": "^6.2.0",
     "live-server": "^1.2.2",
     "mapbox-gl": "^3.0.1",

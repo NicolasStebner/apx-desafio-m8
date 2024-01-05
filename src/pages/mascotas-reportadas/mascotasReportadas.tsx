@@ -22,11 +22,11 @@ function MascotasReportadas(){
   }
 
   function checkIdUser(){
-    if(IdUser == -1){
+    if(IdUser == ""){
       alert("El usuario debe estar loggeado para realizar esta acción")
       navigate("/login")
     }
-    return IdUser == -1
+    return IdUser == ""
   }
 
   async function getMascotasReportadas(){
@@ -52,7 +52,7 @@ function MascotasReportadas(){
         <Subtitle align="center">Aún no reportaste mascotas perdidas</Subtitle>
         <div className={css.contenedor_imagen_button}>
           <img src={ceroReportesImg} className={css.img} alt="imagen_not_reports" />
-          <Button color="#5A8FEC" redirect="/reportar-mascota">Publicar Reporte</Button>
+          <Button color="#5A8FEC" clicked={localStorage.setItem("recargar","true")}redirect="/reportar-mascota">Publicar Reporte</Button>
         </div>
       </>
     : 

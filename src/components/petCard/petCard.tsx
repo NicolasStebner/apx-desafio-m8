@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import css from "./petCard.css"
 import { Button } from "../../ui/button/button";
 
@@ -14,6 +14,7 @@ function PetCard(props){
               if(props.saveIdMascota){
                 props.saveIdMascota(props.id)
               }
+              localStorage.setItem("urlMascota", props.foto)
               props.editClick(props.id)
               
               }}>

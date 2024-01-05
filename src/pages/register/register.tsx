@@ -26,6 +26,8 @@ function RegisterPage(){
         setEmailUser(email)
         const idUser = await serviceToBackend.getIdByEmail(email)
         setIdUser(idUser)
+        localStorage.setItem("emailUser",email)
+        localStorage.setItem("idUser",idUser)
         navigate("/")
       }
     }else{

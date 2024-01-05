@@ -18,10 +18,17 @@ function Header(props){
                 <p className={css.ventana__contenido} onClick={()=>{handlerIsOpen();navigate("/")}}>Home</p>
                 <p className={css.ventana__contenido} onClick={()=>{handlerIsOpen();navigate("/profile")}}>Mis Datos</p>
                 <p className={css.ventana__contenido} onClick={()=>{handlerIsOpen();navigate("/mascotas-reportadas")}}>Mis Mascotas Reportadas</p>
-                <p className={css.ventana__contenido} onClick={()=>{handlerIsOpen();navigate("/reportar-mascota")}}>Reportar Mascota</p>
+                <p className={css.ventana__contenido} onClick={()=>{localStorage.setItem("recargar","true");handlerIsOpen();navigate("/reportar-mascota")}}>Reportar Mascota</p>
                 <p>{props.emailUser}</p>
                 {props.emailUser ? 
-                <p className={css.ventana__contenido} onClick={()=>{handlerIsOpen();props.logOut();navigate("/check-email")}}>Cerrar Sesion</p>
+                <p className={css.ventana__contenido} onClick={()=>{
+                  localStorage.removeItem("recargar")
+                  localStorage.removeItem("idUser")
+                  localStorage.removeItem("emailUser")
+                  localStorage.removeItem("urlMascota")
+                  handlerIsOpen()
+                  props.logOut()
+                  navigate("/check-email")}}>Cerrar Sesion</p>
                 :
                 <p className={css.ventana__contenido} onClick={()=>{handlerIsOpen();navigate("/check-email")}}>Iniciar Sesión</p>
                 }

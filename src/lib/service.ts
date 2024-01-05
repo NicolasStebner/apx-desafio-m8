@@ -72,7 +72,8 @@ export const serviceToBackend = {
 	},
 	async publicarReporteMascota(emailUser:string,info){
 		const idReportador = await this.getIdByEmail(emailUser);
-		const rta = await fetch(`${API_URL}/reportar-mascota-sin-cloudinary/`, {
+		info.foto = localStorage.getItem("urlMascota")
+		const rta = await fetch(`${API_URL}/reportar-mascota/`, {
 			method: "post",
 			headers: {
 				"content-type": "application/json",
@@ -87,6 +88,23 @@ export const serviceToBackend = {
 			}),
 		});
 		return rta.json();
+	},
+	async actualizarDatosMascota(idMascota, info){
+		info.foto = localStorage.getItem("urlMascota")
+		const data = await fetch(`${API_URL}/guardar-mascota-by-id`,{
+			method: "put",
+			headers: {
+				"content-type": "application/json",
+			},
+			body: JSON.stringify({
+				id: idMascota,
+				nombre: info.nombre,
+				fotoURL: info.foto,
+				ubicacion: info.ubicacion
+			}),
+		})
+		const rta = await data.json();
+		return rta
 	},
 	async getMascotasCerca(email,lat_user,lng_user){
 		const data = await fetch(`${API_URL}/get-mascotas-cerca?lat=${lat_user}&lng=${lng_user}`)

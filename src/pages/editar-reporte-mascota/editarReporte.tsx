@@ -14,8 +14,11 @@ function EditarReporte(){
   const { id } = useParams()
   const navigate = useNavigate()
   
-  function guardar(){
-    console.log("guardar")
+  async function guardar(obj){
+    console.log(obj)
+    await serviceToBackend.actualizarDatosMascota(id,obj)
+    alert("Datos actualizados")
+    navigate("/mascotas-reportadas")
   }
 
 
@@ -50,9 +53,8 @@ function EditarReporte(){
       :
       <>
         <Title align="center">Editar reporte de mascota</Title>
-        <ReportPet img={mascota["fotoURL"]} coordenadas={coordenadasFromBack} mascotaFromBack={mascota} showGuardar={false}></ReportPet>
+        <ReportPet handlerSubmit={guardar} img={mascota["fotoURL"]} coordenadas={coordenadasFromBack} mascotaFromBack={mascota} showGuardar={false}></ReportPet>
         <div className={css.contenedor_botones}>
-          <Button clicked={guardar} color="#5A8FEC">Guardar</Button>
           <Button clicked={mascotaEncontrada} color="#00A884">Reportar como encontrado</Button>
           <Button clicked={eliminarMascota} color="#EB6372">Eliminar reporte</Button>
         </div>
