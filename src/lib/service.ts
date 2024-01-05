@@ -1,4 +1,3 @@
-import { RecoilState } from "recoil";
 import { API_URL } from "./port"
 
 export const serviceToBackend = {
@@ -73,7 +72,7 @@ export const serviceToBackend = {
 	},
 	async publicarReporteMascota(emailUser:string,info){
 		const idReportador = await this.getIdByEmail(emailUser);
-		const rta = await fetch(`${API_URL}/reportar-mascota/`, {
+		const rta = await fetch(`${API_URL}/reportar-mascota-sin-cloudinary/`, {
 			method: "post",
 			headers: {
 				"content-type": "application/json",
@@ -83,8 +82,8 @@ export const serviceToBackend = {
 				fotoURL: info.foto,
 				ubicacion: info.ubicacion,
 				idReportador: idReportador,
-				lat: info.coordenadas.lat,
-				lng: info.coordenadas.lng
+				lat: parseFloat(info.coordenadas.lat),
+				lng: parseFloat(info.coordenadas.lng)
 			}),
 		});
 		return rta.json();
