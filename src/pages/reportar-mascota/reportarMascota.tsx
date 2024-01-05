@@ -6,13 +6,19 @@ import { ReportPet } from "../../components/reportPet/reportPet"
 import css from "./reportarMascota.css"
 import { serviceToBackend } from "../../lib/service"
 import { useEmailUser } from "../../hooks/emailUser"
+import { useNavigate } from "react-router-dom"
 
 function ReportarMascota(){
   const {eUser,setEmailUser} = useEmailUser()
+  const navigate = useNavigate()
+
   async function handlerSubmit(info){
     console.log("info desde page", info)
-    // await serviceToBackend.publicarReporteMascota(eUser,info)
+    console.log(info.foto)
+    await serviceToBackend.publicarReporteMascota(eUser,info)
     alert("mascota publicada")
+    navigate("/mascotas-reportadas")
+
   }
   return <>
         <Title align="center">Reportar mascota</Title>
